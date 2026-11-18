@@ -6,7 +6,15 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": ["app/**", "src/**", "test/**", "next.config.ts", "package.json", "tsconfig.json"]
+    "includes": [
+      "app/**",
+      "src/**",
+      "test/**",
+      "scripts/**",
+      "next.config.ts",
+      "package.json",
+      "tsconfig.json"
+    ]
   },
   "formatter": {
     "enabled": true,

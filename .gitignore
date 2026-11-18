@@ -1,6 +1,7 @@
 node_modules
 .next
 out
+out_pages
 dist
 .DS_Store
 *.local
