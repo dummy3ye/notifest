@@ -1,0 +1,5 @@
+.log { margin-top: 88px; font-size: 17px; color: var(--mute); max-width: 560px; }
+.log h2 { font-size: 17px; font-weight: 400; margin: 0 0 10px; color: var(--ink); }
+.log > div { display: flex; gap: 18px; padding: 3px 0; font-variant-numeric: tabular-nums; }
+.log .err { color: var(--red); }
+.log .clear { font-size: 15px; margin-top: 10px; }
