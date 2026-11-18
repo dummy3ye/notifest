@@ -23,3 +23,14 @@
   font-size: 15px;
   margin-top: 10px;
 }
+
+@media (max-width: 600px) {
+  .log {
+    margin-top: 56px;
+    font-size: 15px;
+  }
+  .log > div {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+}
