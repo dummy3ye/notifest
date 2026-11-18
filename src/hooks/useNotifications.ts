@@ -1,13 +1,19 @@
 import { useCallback, useState } from "react";
+import {
+  buildNotificationOptions,
+  getNotificationPermission,
+  isNotificationSupported,
+} from "../lib/notifications";
 import type { Logger, Permission, SendOptions } from "../types";
 
-const supported = typeof window !== "undefined" && "Notification" in window;
-const readPermission = (): Permission => (supported ? Notification.permission : "unsupported");
-
 export function useNotifications(log: Logger) {
-  const [permission, setPermission] = useState<Permission>(readPermission);
+  const [permission, setPermission] = useState<Permission>(getNotificationPermission);
 
   const request = useCallback(async () => {
+    if (!isNotificationSupported()) {
+      log("Notification API is not supported in this browser", true);
+      return;
+    }
     try {
       const result = await Notification.requestPermission();
       log(`permission → ${result}`);
@@ -19,18 +25,10 @@ export function useNotifications(log: Logger) {
 
   const fire = useCallback(
     (o: SendOptions) => {
-      if (Notification.permission !== "granted") {
-        return log(`can't send, permission is ${Notification.permission}`, true);
+      if (!isNotificationSupported() || Notification.permission !== "granted") {
+        return log(`can't send, permission is ${getNotificationPermission()}`, true);
       }
-      const options: NotificationOptions & { renotify?: boolean } = {
-        body: o.body,
-        requireInteraction: o.interact,
-        silent: o.silent,
-      };
-      if (o.tag) {
-        options.tag = o.tag;
-        options.renotify = o.renotify;
-      }
+      const options = buildNotificationOptions(o);
       try {
         const n = new Notification(o.title || "notifest", options);
         n.onshow = () => log("show");

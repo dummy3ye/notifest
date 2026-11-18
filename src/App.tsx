@@ -1,10 +1,5 @@
-import { Circles } from "./components/Circles";
-import { Nav } from "./components/Nav";
-import { SendForm } from "./components/SendForm";
-import { EventLog } from "./components/EventLog";
-import { Footer } from "./components/Footer";
-import { useEventLog } from "./hooks/useEventLog";
-import { useNotifications } from "./hooks/useNotifications";
+import { Circles, EventLog, Footer, Nav, SendForm } from "./components";
+import { useEventLog, useNotifications } from "./hooks";
 
 export function App() {
   const { entries, add, clear } = useEventLog();
@@ -16,7 +11,11 @@ export function App() {
       <main>
         <Nav />
         <div className="inset">
-          <h1>does it<br />notify.</h1>
+          <h1>
+            does it
+            <br />
+            notify ?
+          </h1>
           <SendForm permission={permission} onRequest={request} onSend={send} />
           <EventLog entries={entries} onClear={clear} />
         </div>

@@ -1,4 +1,5 @@
 import { useCallback, useRef, useState } from "react";
+import { formatTimestamp } from "../lib/notifications";
 import type { LogEntry, Logger } from "../types";
 
 export function useEventLog() {
@@ -6,7 +7,7 @@ export function useEventLog() {
   const nextId = useRef(0);
 
   const add: Logger = useCallback((message, error = false) => {
-    const time = new Date().toLocaleTimeString([], { hour12: false });
+    const time = formatTimestamp();
     setEntries((prev) => [{ id: nextId.current++, time, message, error }, ...prev]);
   }, []);
 

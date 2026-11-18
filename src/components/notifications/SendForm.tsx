@@ -1,7 +1,6 @@
 import { useState } from "react";
-import type { Permission, SendOptions } from "../types";
-import { AutoInput } from "./AutoInput";
-import { Toggle } from "./Toggle";
+import type { Permission, SendOptions } from "../../types";
+import { AutoInput, Toggle } from "../ui";
 
 interface Props {
   permission: Permission;
@@ -35,9 +34,19 @@ export function SendForm({ permission, onRequest, onSend }: Props) {
     <section>
       <p className="sentence">
         send{" "}
-        <AutoInput value={title} placeholder="title" aria-label="title" onChange={(e) => setTitle(e.target.value)} />{" "}
+        <AutoInput
+          value={title}
+          placeholder="title"
+          aria-label="title"
+          onChange={(e) => setTitle(e.target.value)}
+        />{" "}
         saying{" "}
-        <AutoInput value={body} placeholder="message" aria-label="body" onChange={(e) => setBody(e.target.value)} />{" "}
+        <AutoInput
+          value={body}
+          placeholder="message"
+          aria-label="body"
+          onChange={(e) => setBody(e.target.value)}
+        />{" "}
         after{" "}
         <AutoInput
           value={delay}
@@ -63,11 +72,11 @@ export function SendForm({ permission, onRequest, onSend }: Props) {
       </div>
 
       <div className="go">
-        <button className="send" onClick={submit} disabled={unsupported}>
+        <button type="button" className="send" onClick={submit} disabled={unsupported}>
           send it
         </button>
         {permission === "default" && (
-          <button className="link" onClick={onRequest}>
+          <button type="button" className="link" onClick={onRequest}>
             grant permission
           </button>
         )}

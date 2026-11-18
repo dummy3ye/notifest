@@ -1,4 +1,4 @@
-import type { LogEntry } from "../types";
+import type { LogEntry } from "../../types";
 
 interface Props {
   entries: LogEntry[];
@@ -19,7 +19,7 @@ export function EventLog({ entries, onClear }: Props) {
           </div>
         ))
       )}
-      <button className="link clear" onClick={onClear}>
+      <button type="button" className="link clear" onClick={onClear}>
         clear
       </button>
     </section>
