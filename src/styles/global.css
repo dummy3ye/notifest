@@ -1,4 +1,5 @@
-:root {
+:root,
+html.light {
   --bg: #f7f4ec;
   --ink: #16161d;
   --mute: #77766f;
@@ -6,8 +7,14 @@
   --green: #c3d1b5;
   --red: #b3122e;
 }
+html.dark {
+  --bg: #14141a;
+  --ink: #f1eee6;
+  --mute: #8d8c86;
+  --green: #3b4a35;
+}
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not(.light) {
     --bg: #14141a;
     --ink: #f1eee6;
     --mute: #8d8c86;
@@ -85,6 +92,19 @@ nav b {
 }
 nav a:hover {
   border-bottom: 1px solid var(--red);
+}
+.theme-toggle {
+  margin-left: auto;
+  background: none;
+  border: 0;
+  padding: 4px;
+  cursor: pointer;
+  color: var(--mute);
+  line-height: 0;
+  transition: color 0.2s;
+}
+.theme-toggle:hover {
+  color: var(--ink);
 }
 
 h1 {

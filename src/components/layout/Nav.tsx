@@ -1,3 +1,5 @@
+import { ThemeToggle } from "../ui";
+
 export function Nav() {
   return (
     <nav>
@@ -5,6 +7,7 @@ export function Nav() {
       <a href="https://arinaholic.me" target="_blank" rel="noopener noreferrer">
         arinaholic.me
       </a>
+      <ThemeToggle />
     </nav>
   );
 }
