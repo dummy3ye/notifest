@@ -7,7 +7,6 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build:pages": "bun scripts/buildPages.ts",
     "start": "next start",
     "typecheck": "tsc --noEmit --incremental false",
     "test": "bun test",

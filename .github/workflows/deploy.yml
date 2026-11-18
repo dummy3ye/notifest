@@ -35,13 +35,13 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build Static Export for /notifest subpath
-        run: bun run build:pages
+      - name: Build Static Export
+        run: OUTPUT_EXPORT=true bun run build
 
       - name: Upload Pages Artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: out_pages
+          path: out
 
       - name: Deploy to GitHub Pages
         id: deployment
