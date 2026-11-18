@@ -43,3 +43,34 @@ export function buildNotificationOptions(
 export function formatTimestamp(date: Date = new Date()): string {
   return date.toLocaleTimeString([], { hour12: false });
 }
+
+/**
+ * Registers the service worker needed for mobile notification support.
+ * Returns the ServiceWorkerRegistration or null if unavailable.
+ */
+export async function registerServiceWorker(): Promise<ServiceWorkerRegistration | null> {
+  if (typeof navigator === "undefined" || !("serviceWorker" in navigator)) {
+    return null;
+  }
+  try {
+    return await navigator.serviceWorker.register("/sw.js");
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Returns true if the browser requires ServiceWorker-based notifications
+ * (i.e. `new Notification()` throws — Android Chrome).
+ */
+export function needsServiceWorker(): boolean {
+  if (!isNotificationSupported()) return false;
+  try {
+    // Android Chrome throws TypeError on `new Notification()`
+    const n = new Notification("");
+    n.close();
+    return false;
+  } catch {
+    return true;
+  }
+}
