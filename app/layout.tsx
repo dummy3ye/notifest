@@ -14,6 +14,10 @@ const jost = Jost({
 export const metadata: Metadata = {
   title: "notifest",
   description: "Browser notification tester and debugger",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/icon.svg",
+  },
 };
 
 export const viewport: Viewport = {
